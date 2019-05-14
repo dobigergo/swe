@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.StatController">
+   <children>
+      <TableView fx:id="gameResultTable" layoutX="1.0" prefHeight="360.0" prefWidth="600.0">
+        <columns>
+          <TableColumn fx:id="dateColumn" prefWidth="198.0" text="Dátum" />
+          <TableColumn fx:id="topicColumn" prefWidth="191.0" text="Témakör" />
+            <TableColumn fx:id="pointColumn" prefWidth="210.0" text="Pont" />
+        </columns>
+      </TableView>
+      <Button layoutX="269.0" layoutY="366.0" mnemonicParsing="false" onAction="#back" text="Vissza" />
+   </children>
+</AnchorPane>

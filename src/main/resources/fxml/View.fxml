@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.effect.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.text.*?>
+<?import javafx.scene.control.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane id="startpane" fx:id="startpane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.LauncherController">
+   <children>
+      <Button id="Start" fx:id="Start" contentDisplay="CENTER" layoutX="191.0" layoutY="45.0" mnemonicParsing="false" onAction="#start" prefHeight="81.0" prefWidth="218.0" text="Start" textAlignment="CENTER" textFill="#171616">
+         <font>
+            <Font name="System Bold Italic" size="25.0" />
+         </font>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+         <effect>
+            <Blend />
+         </effect>
+      </Button>
+      <Button id="Statisztika" fx:id="Statisztika" layoutX="191.0" layoutY="160.0" mnemonicParsing="false" onAction="#stat" prefHeight="81.0" prefWidth="218.0" text="Statisztika">
+         <font>
+            <Font name="System Bold Italic" size="25.0" />
+         </font>
+      </Button>
+      <Button id="Kilepes" fx:id="Kilepes" layoutX="191.0" layoutY="275.0" mnemonicParsing="false" onAction="#exit" prefHeight="81.0" prefWidth="218.0" text="Kilépés">
+         <font>
+            <Font name="System Bold Italic" size="25.0" />
+         </font>
+      </Button>
+   </children>
+   <effect>
+      <Blend />
+   </effect>
+</AnchorPane>

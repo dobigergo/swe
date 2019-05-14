@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.GameController">
+   <children>
+      <Pane id="pop_up" fx:id="popPane" prefHeight="200.0" prefWidth="200.0" layoutX="150" layoutY="100">
+         <children>
+            <Button onAction="#exit" fx:id="ok" layoutX="80.0" layoutY="140.0" mnemonicParsing="false" text="OK" visible="false" />
+            <Label fx:id="finalPointLabel" layoutX="44.0" layoutY="78.0" prefHeight="44.0" prefWidth="113.0" text="Label" visible="false" />
+            <Label fx:id="finalTextLabel" layoutX="44.0" layoutY="27.0" prefHeight="44.0" prefWidth="113.0" text="Az elért pontod:" visible="false" />
+         </children>
+      </Pane>
+      <AnchorPane fx:id="mainPane" layoutX="-4.0" layoutY="-5.0" prefHeight="410.0" prefWidth="609.0">
+         <children>
+            <ToolBar layoutX="90.0" layoutY="219.0" prefHeight="96.0" prefWidth="468.0">
+              <items>
+                <Button id="answerButton" fx:id="answerButton" mnemonicParsing="false" onAction="#answer" text="Válasz" />
+                  <TextField id="answer" fx:id="answer"  prefHeight="31.0" prefWidth="370.0" />
+              </items>
+            </ToolBar>
+            <VBox />
+            <Label layoutX="58.0" layoutY="329.0" prefHeight="53.0" prefWidth="65.0" text="Pontok:" />
+            <Label layoutX="357.0" layoutY="329.0" prefHeight="53.0" prefWidth="65.0" text="Összes:" />
+            <Label layoutX="186.0" layoutY="329.0" prefHeight="53.0" prefWidth="65.0" text="Elért:" />
+            <Label id="point2" fx:id="point2" layoutX="459.0" layoutY="329.0" prefHeight="53.0" prefWidth="65.0" />
+            <Label id="point1" fx:id="point1" layoutX="259.0" layoutY="329.0" prefHeight="53.0" prefWidth="65.0" />
+            <Label id="word2" fx:id="word2" layoutX="90.0" layoutY="125.0" prefHeight="38.0" prefWidth="468.0" text="Label" />
+            <Label id="word3" fx:id="word3" layoutX="90.0" layoutY="49.0" prefHeight="38.0" prefWidth="468.0" text="Label" />
+            <Label id="word1" fx:id="word1" layoutX="90.0" layoutY="87.0" prefHeight="38.0" prefWidth="468.0" text="Label" />
+            <Label fx:id="errorLabel" layoutX="102.0" layoutY="194.0" prefHeight="21.0" prefWidth="248.0" textFill="#f20b0b" />
+         </children>
+      </AnchorPane>
+   </children>
+</AnchorPane>

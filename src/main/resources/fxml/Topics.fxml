@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.layout.*?>
+<?import java.lang.*?>
+<?import javafx.scene.control.*?>
+
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.TopicController">
+   <children>
+      <TableView id="topics" fx:id="topics" layoutY="2.0" prefHeight="298.0"  prefWidth="600.0">
+        <columns>
+          <TableColumn  fx:id="topic" prefWidth="315.0" text="Témakör" />
+          <TableColumn  fx:id="level" minWidth="0.0" prefWidth="284.0" text="Szint"/>
+        </columns>
+      </TableView>
+      <Button id="backButton" fx:id="backButton" layoutX="140.0" layoutY="328.0" mnemonicParsing="false" onAction="#back" prefHeight="31.0" prefWidth="126.0" text="Vissza" />
+      <Button id="start" fx:id="start" layoutX="337.0" layoutY="328.0" mnemonicParsing="false" onAction="#start" prefHeight="31.0" prefWidth="136.0" text="Start" />
+       <Label fx:id="errorLabel" layoutX="337.0" layoutY="300.0" prefHeight="21.0" prefWidth="136.0" textFill="#d30000" />
+   </children>
+</AnchorPane>
