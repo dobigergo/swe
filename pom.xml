@@ -13,6 +13,12 @@
     </developer>
 </developers>
 
+    <scm>
+        <url>https://github.com/dobigergo/swe</url>
+        <connection>scm:git:git://github.com/dobigergo/swe.git</connection>
+        <developerConnection>scm:git:git@github.com:dobigergo/swe.git</developerConnection>
+    </scm>
+
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <maven.compiler.source>11</maven.compiler.source>
