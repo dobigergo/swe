@@ -1,12 +1,12 @@
 [
-{"path": "cultural_events.json",
+{"path": "json/cultural_events.json",
   "level": "B2",
   "name": "Cultural Events"
 },
-  {"path": "family_relations.json",
+  {"path": "json/family_relations.json",
   "level": "B2",
   "name":"Family Relations"},
-  {"path": "meals_and_services.json",
+  {"path": "json/meals_and_services.json",
   "level": "A1",
   "name": "Meals and Services"}
   ]

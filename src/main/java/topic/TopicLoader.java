@@ -18,7 +18,7 @@ public class TopicLoader {
 
     public TopicLoader() throws UnsupportedEncodingException {
         Type type = new TypeToken<List<Topic>>(){}.getType();
-        Reader reader = new InputStreamReader(TopicLoader.class.getResourceAsStream("/names.json"), "UTF-8");
+        Reader reader = new InputStreamReader(TopicLoader.class.getResourceAsStream("/json/names.json"), "UTF-8");
         Gson gson = new GsonBuilder().create();
         topics = gson.fromJson(reader,type);
         logger.info("A json betöltése sikeres volt");

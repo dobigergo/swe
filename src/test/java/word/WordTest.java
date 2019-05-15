@@ -11,7 +11,7 @@ import java.util.Arrays;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-class WordTest {
+public class WordTest {
 
     private  Word word;
 

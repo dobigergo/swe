@@ -140,7 +140,7 @@ public class GameController {
 
     public void setStarsToDefault(){
         for(ImageView i:images){
-            i.setImage(new Image(getClass().getResourceAsStream("/Star.png")));
+            i.setImage(new Image(getClass().getResourceAsStream("/image/Star.png")));
         }
     }
 
@@ -149,7 +149,7 @@ public class GameController {
         logger.info(""+szazalek);
         for(int i=1; i<=3; i++)
             if(szazalek>i*30)
-                images[i-1].setImage(new Image(getClass().getResourceAsStream("/fullStar.png")));
+                images[i-1].setImage(new Image(getClass().getResourceAsStream("/image/fullStar.png")));
     }
 
     public void setLabelsToDefault(){

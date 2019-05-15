@@ -5,7 +5,6 @@ import com.google.inject.Injector;
 import javafx.scene.control.TableCell;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import topic.Topic;
 import util.guice.PersistanceModule;
 import game.GameResult;
 import game.GameResultDao;

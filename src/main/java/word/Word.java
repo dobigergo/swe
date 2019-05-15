@@ -48,7 +48,7 @@ public class Word {
 
     /**
      *
-     * @param answer the answer to the meaning of the {@hun} word in english
+     * @param answer the answer to the meaning of the {@code hun} word in english
      * @return the number of points depending on the similarity of the answer and the original english word
      */
     public int checkPoint(String answer){
