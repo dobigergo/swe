@@ -1,4 +1,4 @@
 /**
- * Provides words and vocabulary for the game
+ * Provides words and vocabulary for the game.
  */
 package word;
