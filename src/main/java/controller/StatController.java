@@ -2,8 +2,10 @@ package controller;
 
 import com.google.inject.Guice;
 import com.google.inject.Injector;
+import javafx.scene.control.TableCell;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import topic.Topic;
 import util.guice.PersistanceModule;
 import game.GameResult;
 import game.GameResultDao;
@@ -21,6 +23,8 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
 
 import java.io.IOException;
+import java.time.ZonedDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.List;
 
 public class StatController {
@@ -52,11 +56,32 @@ public class StatController {
             Injector injector = Guice.createInjector(new PersistanceModule("jpa-persistence-unit-1"));
             gameResultDao = injector.getInstance(GameResultDao.class);
 
-            List<GameResult> toptenList = gameResultDao.findBest(10);
+            List<GameResult> toptenList = gameResultDao.findMostRecent(20);
 
             topicColumn.setCellValueFactory(new PropertyValueFactory<>("topic"));
             dateColumn.setCellValueFactory(new PropertyValueFactory<>("created"));
             pointColumn.setCellValueFactory(new PropertyValueFactory<>("point"));
+
+            dateColumn.setCellFactory(column -> {
+                TableCell<GameResult, ZonedDateTime> cell = new TableCell<GameResult, ZonedDateTime>() {
+                    private DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy/MM/dd - HH:mm:ss (Z)");
+
+                    @Override
+                    protected void updateItem(ZonedDateTime item, boolean empty) {
+                        super.updateItem(item, empty);
+                        if(empty) {
+                            setText(null);
+                        }
+                        else {
+                            setText(item.format(formatter));
+                        }
+                    }
+                };
+
+                return cell;
+            });
+
+
 
             ObservableList<GameResult> observableResult = FXCollections.observableArrayList();
             observableResult.addAll(toptenList);

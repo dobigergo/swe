@@ -14,8 +14,8 @@ public class GameResultDao extends GenericJpaDao {
     }
 
     @Transactional
-    public List<GameResult> findBest(int n) {
-        return entityManager.createQuery("SELECT r FROM GameResult r ORDER BY r.point ASC, r.created DESC", GameResult.class)
+    public List<GameResult> findMostRecent(int n) {
+        return entityManager.createQuery("SELECT r FROM GameResult r ORDER BY r.created DESC, r.point DESC", GameResult.class)
                 .setMaxResults(n)
                 .getResultList();
     }

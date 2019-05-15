@@ -2,6 +2,10 @@ package controller;
 
 import com.google.inject.Guice;
 import com.google.inject.Injector;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import util.guice.PersistanceModule;
 import game.GameResult;
 import game.GameResultDao;
@@ -28,6 +32,13 @@ import java.util.Collections;
 
 
 public class GameController {
+    @FXML
+    ImageView image3;
+    @FXML
+    ImageView image2;
+    @FXML
+    ImageView image1;
+    private ImageView[] images;
     private Vocab vocab;
     private Label[] labels;
     private int players_Point;
@@ -61,50 +72,51 @@ public class GameController {
     @FXML
     AnchorPane mainPane;
 
+    private static Logger logger = LoggerFactory.getLogger(GameController.class);
 
-    public void initialize(String selectedTopic) throws UnsupportedEncodingException {
-        this.selectedTopic=selectedTopic;
-        vocab = new Vocab("/"+selectedTopic);
-        Collections.shuffle(vocab.getAll());
-        max=vocab.cnt();
-        point2.setText(""+vocab.cnt()*2);
-        Injector injector = Guice.createInjector(new PersistanceModule("jpa-persistence-unit-1"));
-        gameResultDao = injector.getInstance(GameResultDao.class);
+    public void exit(ActionEvent actionEvent) throws IOException {
+        gameResultDao.persist(getResult());
+        logger.info("A feladat véget ért, az adatok rögzítve");
+        Parent root = FXMLLoader.load(getClass().getResource("/fxml/View.fxml"));
+        Scene scene = new Scene(root);
+        Stage stage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
+        stage.setScene(scene);
+        stage.setTitle("Angol gyakorlás");
+        stage.show();
+    }
 
 
-
-        counter=0;
-
-        labels = new Label[]{word1,word2,word3};
-        players_Point =0;
-        point1.setText(""+players_Point);
-
-        gameState(vocab);
+    public void initialize(String selectedTopic, String selectedPath) throws UnsupportedEncodingException {
+        try {
+            this.selectedTopic = selectedTopic;
+            vocab = new Vocab("/" + selectedPath);
+            Collections.shuffle(vocab.getAll());
+            max = vocab.cnt();
+            point2.setText("" + vocab.cnt() * 2);
+            Injector injector = Guice.createInjector(new PersistanceModule("jpa-persistence-unit-1"));
+            gameResultDao = injector.getInstance(GameResultDao.class);
+            counter = 0;
+            labels = new Label[]{word1, word2, word3};
+            images = new ImageView[]{image1,image2,image3};
+            players_Point = 0;
+            point1.setText("" + players_Point);
+            gameState(vocab);
+        }
+        catch(Exception e){
+            logger.info("A témakör betöltése sikertelen");
+        }
     }
 
 
     public void gameState(Vocab vocab) {
-
-        for (Label l : labels)
-            l.setText("");
+        refresh();
         if (counter == max) {
-            popPane.setVisible(true);
-            finalPointLabel.setVisible(true);
-            finalPointLabel.setText(String.valueOf(players_Point));
-            finalTextLabel.setVisible(true);
-            ok.setVisible(true);
-            mainPane.setOpacity(0.4);
-            mainPane.setDisable(true);
+            endGame();
         }
         else{
-            word = vocab.getAll().get(counter);
-            for (int i = 0; i < 3; i++)
-                if (i < word.getHun().size())
-                    labels[i].setText(word.getHun().get(i));
+            writeState();
     }
-        point1.setText(""+ players_Point);
-        answer.setText("");
-        counter++;
+        updatePoint();
     }
 
     public void answer(){
@@ -120,20 +132,58 @@ public class GameController {
        }
     }
 
+    public void refresh(){
+        setStarsToDefault();
+        setStars();
+        setLabelsToDefault();
+    }
+
+    public void setStarsToDefault(){
+        for(ImageView i:images){
+            i.setImage(new Image(getClass().getResourceAsStream("/Star.png")));
+        }
+    }
+
+    public void setStars(){
+        double szazalek = ((double) players_Point/(max*2))*100;
+        logger.info(""+szazalek);
+        for(int i=1; i<=3; i++)
+            if(szazalek>i*30)
+                images[i-1].setImage(new Image(getClass().getResourceAsStream("/fullStar.png")));
+    }
+
+    public void setLabelsToDefault(){
+        for (Label l : labels)
+            l.setText("");
+    }
+
+    public void endGame(){
+        popPane.setVisible(true);
+        finalPointLabel.setVisible(true);
+        finalPointLabel.setText(String.valueOf(players_Point));
+        finalTextLabel.setVisible(true);
+        ok.setVisible(true);
+        mainPane.setOpacity(0.4);
+        mainPane.setDisable(true);
+    }
+
+    public void writeState(){
+        word = vocab.getAll().get(counter);
+        for (int i = 0; i < 3; i++)
+            if (i < word.getHun().size())
+                labels[i].setText(word.getHun().get(i));
+    }
+
+    public void updatePoint(){
+        point1.setText(""+ players_Point);
+        answer.setText("");
+        counter++;
+    }
+
     private GameResult getResult(){
         GameResult result = GameResult.builder().point(this.players_Point).topic(this.selectedTopic).created(ZonedDateTime.now()).build();
+
         return result;
     }
-
-    public void exit(ActionEvent actionEvent) throws IOException {
-        gameResultDao.persist(getResult());
-        Parent root = FXMLLoader.load(getClass().getResource("/fxml/View.fxml"));
-        Scene scene = new Scene(root);
-        Stage stage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
-        stage.setScene(scene);
-        stage.setTitle("Angol gyakorlás");
-        stage.show();
-    }
-
 
 }

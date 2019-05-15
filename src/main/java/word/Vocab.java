@@ -20,11 +20,14 @@ public class Vocab {
      */
     private List<Word> vocab;
 
+
+
     public Vocab(String filename) throws UnsupportedEncodingException {
         Type type = new TypeToken<List<Word>>(){}.getType();
         Reader reader = new InputStreamReader(Vocab.class.getResourceAsStream(filename), "UTF-8");
         Gson gson = new GsonBuilder().create();
         vocab = gson.fromJson(reader,type);
+
         logger.info("A json betöltése sikeres volt");
     }
 
@@ -44,5 +47,7 @@ public class Vocab {
     public int cnt(){
        return (int) getAll().stream().count();
     }
+
+
 
 }

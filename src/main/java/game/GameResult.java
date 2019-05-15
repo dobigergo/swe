@@ -30,7 +30,4 @@ public class GameResult {
     private int point;
 
 
-
-
-
 }

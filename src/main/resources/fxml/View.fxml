@@ -20,7 +20,7 @@
             <Blend />
          </effect>
       </Button>
-      <Button id="Statisztika" fx:id="Statisztika" layoutX="191.0" layoutY="160.0" mnemonicParsing="false" onAction="#stat" prefHeight="81.0" prefWidth="218.0" text="Statisztika">
+      <Button id="Statisztika" fx:id="Statisztika" layoutX="191.0" layoutY="160.0" mnemonicParsing="false" onAction="#stat" prefHeight="81.0" prefWidth="218.0" text="Eredmények">
          <font>
             <Font name="System Bold Italic" size="25.0" />
          </font>

@@ -40,6 +40,8 @@ public class TopicController implements Initializable {
 
     private String selectedTopic;
 
+    private String selectedPath;
+
     private static Logger logger = LoggerFactory.getLogger(TopicController.class);
 
     public void back(ActionEvent actionEvent) throws IOException {
@@ -57,7 +59,7 @@ public class TopicController implements Initializable {
         } else {
             FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/fxml/Game.fxml"));
             Parent root = fxmlLoader.load();
-            fxmlLoader.<GameController>getController().initialize(selectedTopic);
+            fxmlLoader.<GameController>getController().initialize(selectedTopic,selectedPath);
             Stage stage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
             stage.setScene(new Scene(root));
             stage.setTitle(selectedTopic);
@@ -72,6 +74,7 @@ public class TopicController implements Initializable {
             @Override
             public void handle(javafx.scene.input.MouseEvent mouseEvent) {
                 selectedTopic = topics.getSelectionModel().getSelectedItem().getName();
+                selectedPath = topics.getSelectionModel().getSelectedItem().getPath();
             }
         });
     }

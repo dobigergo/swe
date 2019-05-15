@@ -15,6 +15,7 @@ public class TopicLoader {
     private List<Topic> topics;
     private static Logger logger = LoggerFactory.getLogger(TopicLoader.class);
 
+
     public TopicLoader() throws UnsupportedEncodingException {
         Type type = new TypeToken<List<Topic>>(){}.getType();
         Reader reader = new InputStreamReader(TopicLoader.class.getResourceAsStream("/names.json"), "UTF-8");
